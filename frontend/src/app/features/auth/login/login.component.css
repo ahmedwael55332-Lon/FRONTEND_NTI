@@ -1219,3 +1219,119 @@
 .brand-name {
   white-space: nowrap;
 }
+/* ================================
+   Compact Login Layout
+   ================================ */
+
+.auth-page-wrapper {
+  padding: 20px 16px;
+}
+
+.auth-card-container {
+  max-width: 1050px;
+  border-radius: 26px;
+}
+
+/* Left side */
+.auth-hero-column {
+  padding: 34px;
+}
+
+.hero-center-content {
+  margin: 18px 0;
+}
+
+.hero-main-heading {
+  font-size: 1.9rem;
+  margin-bottom: 8px;
+}
+
+.hero-subheading {
+  font-size: 0.82rem;
+  line-height: 1.45;
+  margin-bottom: 12px;
+}
+
+.blood-drop-graphic-wrap {
+  margin: 0 0 14px;
+}
+
+.blood-drop-illustration {
+  width: 115px;
+  height: 135px;
+}
+
+.drop-shape {
+  width: 105px;
+  height: 130px;
+}
+
+.hero-counters-grid {
+  gap: 9px;
+}
+
+.counter-card {
+  padding: 10px 8px;
+}
+
+.counter-icon-box {
+  width: 30px;
+  height: 30px;
+}
+
+.counter-val {
+  font-size: 1rem;
+}
+
+.counter-label {
+  font-size: 0.65rem;
+}
+
+/* Right side */
+.auth-form-column {
+  padding: 34px 36px;
+}
+
+.auth-top-nav {
+  margin-bottom: 18px;
+}
+
+.form-title-group {
+  margin-bottom: 18px;
+}
+
+.form-main-title {
+  font-size: 1.55rem;
+}
+
+.form-main-subtitle {
+  font-size: 0.8rem;
+}
+
+.form-group {
+  margin-bottom: 10px;
+}
+
+.auth-input {
+  padding: 10px 14px 10px 40px;
+}
+
+.remember-row {
+  margin: 10px 0 14px;
+}
+
+.auth-submit-btn {
+  padding: 11px 18px;
+}
+
+.or-divider {
+  margin: 13px 0;
+}
+
+.google-login-btn {
+  padding: 9px;
+}
+
+.form-bottom-link {
+  margin-top: 12px;
+}
