@@ -1,0 +1,66 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Plus+Jakarta+Sans:wght@600;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,0');
+
+:root {
+  --primary: #E63946;
+  --secondary: #457B9D;
+  --background: #F8F9FA;
+  --surface: #FFFFFF;
+  --navy: #1D3557;
+  --success: #2A9D8F;
+  --warning: #E9C46A;
+  --error: #D62828;
+  --border: #E9ECEF;
+  --shadow: 0 4px 20px rgba(29, 53, 87, 0.04);
+}
+
+* { box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+body { margin: 0; background: var(--background); color: var(--navy); font-family: Inter, sans-serif; }
+button, input, textarea, select { font: inherit; }
+a { color: inherit; }
+
+
+/* Global dark theme for public/dashboard surfaces */
+body.dark-theme {
+  --background: #0b1220;
+  --surface: #111827;
+  --navy: #e5eef7;
+  --border: rgba(148,163,184,.16);
+  --shadow: 0 8px 28px rgba(0,0,0,.22);
+  color: #e5eef7;
+}
+body.dark-theme .dashboard-shell { background: #0b1220; }
+body.dark-theme .sidebar,
+body.dark-theme .topbar,
+body.dark-theme .panel,
+body.dark-theme .card,
+body.dark-theme .stat-card { background: #111827; border-color: rgba(148,163,184,.16); }
+body.dark-theme .topbar { background: rgba(17,24,39,.92); }
+body.dark-theme .sidebar-nav a,
+body.dark-theme .sidebar-bottom a,
+body.dark-theme .sidebar-bottom button { color: #9fb0c4; }
+body.dark-theme .sidebar-nav a:hover,
+body.dark-theme .sidebar-bottom a:hover,
+body.dark-theme .sidebar-bottom button:hover,
+body.dark-theme .icon-button { background: #182235; }
+body.dark-theme .icon-button { color: #e5eef7; border-color: rgba(148,163,184,.18); }
+body.dark-theme .table th { background: #182235; color: #e5eef7; }
+body.dark-theme .table td { color: #cbd5e1; border-color: rgba(148,163,184,.12); }
+body.dark-theme .distribution-bar { background: #1b293c; }
+body.dark-theme .blood-flow-background { opacity: .72; }
+
+/* Arabic / RTL support */
+html[dir='rtl'] body,
+body.rtl-layout { direction: rtl; }
+
+html[dir='rtl'] .nav-inner,
+html[dir='rtl'] .topbar,
+html[dir='rtl'] .page-head,
+html[dir='rtl'] .welcome,
+html[dir='rtl'] .panel-head { direction: rtl; }
+
+html[dir='rtl'] .sidebar { text-align: right; }
+html[dir='rtl'] .nav-links,
+html[dir='rtl'] .nav-actions,
+html[dir='rtl'] .hero-actions { direction: rtl; }

@@ -1,0 +1,323 @@
+<app-dashboard-layout
+  title="Admin Portal"
+  subtitle="System Oversight"
+  [navItems]="navItems"
+>
+
+  <div class="page-head">
+
+    <div>
+      <span class="eyebrow">INVENTORY</span>
+
+      <h2>Blood Units</h2>
+
+      <p>
+        Manage blood inventory and unit lifecycle.
+      </p>
+    </div>
+
+    <button
+      class="btn primary"
+      type="button"
+      (click)="openCreateForm()"
+    >
+      Create Blood Unit
+    </button>
+
+  </div>
+
+
+  <div
+    *ngIf="successMessage"
+    class="notice success-notice"
+  >
+    {{ successMessage }}
+  </div>
+
+
+  <div
+    *ngIf="errorMessage && !showForm"
+    class="notice error-notice"
+  >
+    {{ errorMessage }}
+  </div>
+
+
+  <!-- Create / Edit -->
+
+  <div
+    *ngIf="showForm"
+    class="card form-card"
+  >
+
+    <div class="form-head">
+
+      <div>
+        <h3>
+          {{ editingUnit ? 'Edit Blood Unit' : 'Create Blood Unit' }}
+        </h3>
+
+        <p>
+          Enter the blood unit information.
+        </p>
+      </div>
+
+      <button
+        type="button"
+        class="btn secondary"
+        (click)="closeForm()"
+      >
+        Cancel
+      </button>
+
+    </div>
+
+
+    <div
+      *ngIf="errorMessage"
+      class="notice error-notice"
+    >
+      {{ errorMessage }}
+    </div>
+
+
+    <div class="form-grid">
+
+      <div class="field">
+
+        <label>Blood Type</label>
+
+        <select
+          [(ngModel)]="formData.bloodType"
+          name="bloodType"
+        >
+
+          <option
+            *ngFor="let type of bloodTypes"
+            [value]="type"
+          >
+            {{ type }}
+          </option>
+
+        </select>
+
+      </div>
+
+
+      <div class="field">
+
+        <label>Rh</label>
+
+        <select
+          [(ngModel)]="formData.rh"
+          name="rh"
+        >
+
+          <option
+            *ngFor="let rh of rhTypes"
+            [value]="rh"
+          >
+            {{ rh }}
+          </option>
+
+        </select>
+
+      </div>
+
+
+      <div class="field">
+
+        <label>Collection Date</label>
+
+        <input
+          type="date"
+          [(ngModel)]="formData.collectionDate"
+          name="collectionDate"
+        />
+
+      </div>
+
+
+      <div class="field">
+
+        <label>Expiration Date</label>
+
+        <input
+          type="date"
+          [(ngModel)]="formData.expirationDate"
+          name="expirationDate"
+        />
+
+      </div>
+
+
+      <div class="field">
+
+        <label>Status</label>
+
+        <select
+          [(ngModel)]="formData.status"
+          name="status"
+        >
+
+          <option
+            *ngFor="let status of statuses"
+            [value]="status"
+          >
+            {{ status }}
+          </option>
+
+        </select>
+
+      </div>
+
+    </div>
+
+
+    <div class="form-actions">
+
+      <button
+        type="button"
+        class="btn secondary"
+        (click)="closeForm()"
+        [disabled]="saving"
+      >
+        Cancel
+      </button>
+
+      <button
+        type="button"
+        class="btn primary"
+        (click)="saveBloodUnit()"
+        [disabled]="saving"
+      >
+        {{ saving ? 'Saving...' : (editingUnit ? 'Update Blood Unit' : 'Create Blood Unit') }}
+      </button>
+
+    </div>
+
+  </div>
+
+
+  <!-- Loading -->
+
+  <div
+    *ngIf="loading"
+    class="card loading-card"
+  >
+    Loading blood units...
+  </div>
+
+
+  <!-- Table -->
+
+  <div
+    *ngIf="!loading"
+    class="table-wrap"
+  >
+
+    <table class="table">
+
+      <thead>
+
+        <tr>
+          <th>Blood Type</th>
+          <th>Rh</th>
+          <th>Collection Date</th>
+          <th>Expiration Date</th>
+          <th>Status</th>
+          <th>Actions</th>
+        </tr>
+
+      </thead>
+
+
+      <tbody>
+
+        <tr
+          *ngFor="let unit of bloodUnits"
+        >
+
+          <td>
+            {{ unit.bloodType }}
+          </td>
+
+          <td>
+            {{ unit.rh }}
+          </td>
+
+          <td>
+            {{ formatDate(unit.collectionDate) }}
+          </td>
+
+          <td>
+            {{ formatDate(unit.expirationDate) }}
+          </td>
+
+          <td>
+
+            <span
+              class="badge"
+              [ngClass]="getStatusClass(unit.status)"
+            >
+              {{ unit.status }}
+            </span>
+
+          </td>
+
+          <td>
+
+            <div class="row-actions">
+
+              <button
+                type="button"
+                class="btn secondary"
+                (click)="openEditForm(unit)"
+              >
+                Edit
+              </button>
+
+              <button
+                *ngIf="unit.status === 'Available'"
+                type="button"
+                class="btn secondary"
+                (click)="releaseBloodUnit(unit)"
+              >
+                Release
+              </button>
+
+              <button
+                type="button"
+                class="btn danger"
+                (click)="deleteBloodUnit(unit)"
+              >
+                Delete
+              </button>
+
+            </div>
+
+          </td>
+
+        </tr>
+
+
+        <tr
+          *ngIf="bloodUnits.length === 0"
+        >
+
+          <td
+            colspan="6"
+            class="empty"
+          >
+            No blood units found.
+          </td>
+
+        </tr>
+
+      </tbody>
+
+    </table>
+
+  </div>
+
+</app-dashboard-layout>

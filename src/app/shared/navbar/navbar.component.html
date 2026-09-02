@@ -1,0 +1,45 @@
+<nav class="navbar">
+  <div class="nav-inner">
+    <a
+  class="brand"
+  routerLink="/"
+  aria-label="NUQTAT DAM"
+>
+  <img
+    src="assets/logo.png"
+    alt="NUQTAT DAM"
+    class="brand-logo"
+  >
+
+  <span class="brand-name">
+    NUQTAT DAM
+  </span>
+</a>
+
+    <div class="nav-links">
+      <a routerLink="/" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }">{{ 'Home' | translate }}</a>
+      <a routerLink="/about" routerLinkActive="active">{{ 'About' | translate }}</a>
+      <a routerLink="/how-it-works" routerLinkActive="active">{{ 'How It Works' | translate }}</a>
+      <a routerLink="/contact" routerLinkActive="active">{{ 'Contact' | translate }}</a>
+    </div>
+
+    <div class="nav-actions">
+      <ng-container *ngIf="!isLoggedIn">
+        <a class="nav-auth-link" routerLink="/login">{{ 'Login' | translate }}</a>
+        <a class="nav-auth-button" routerLink="/register">{{ 'Register' | translate }}</a>
+      </ng-container>
+      <button class="icon-button language-button" type="button" (click)="toggleLanguage()" [attr.aria-label]="languageService.isArabic ? ('Switch to English' | translate) : ('Switch to Arabic' | translate)" [title]="languageService.isArabic ? ('Switch to English' | translate) : ('Switch to Arabic' | translate)">
+        <span class="material-symbols-outlined">translate</span>
+      </button>
+      <button class="icon-button" type="button" aria-label="Notifications" (click)="goToNotifications()">
+        <span class="material-symbols-outlined">notifications</span>
+      </button>
+      <button class="icon-button" type="button" aria-label="Account" (click)="goToAccount()">
+        <span class="material-symbols-outlined">account_circle</span>
+      </button>
+      <button *ngIf="isLoggedIn" class="icon-button logout-button" type="button" aria-label="Logout" title="Logout" (click)="logout()">
+        <span class="material-symbols-outlined">logout</span>
+      </button>
+    </div>
+  </div>
+</nav>

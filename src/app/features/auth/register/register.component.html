@@ -1,0 +1,548 @@
+<div class="auth-page-wrapper">
+
+  <!-- Animated Background Aurora & Particles for Glassmorphism -->
+  <div class="ambient-glow glow-1"></div>
+  <div class="ambient-glow glow-2"></div>
+  <div class="ambient-glow glow-3"></div>
+
+  <!-- Floating Micro-Particles -->
+  <div class="particles-container">
+    <div class="particle p-1"></div>
+    <div class="particle p-2"></div>
+    <div class="particle p-3"></div>
+    <div class="particle p-4"></div>
+    <div class="particle p-5"></div>
+    <div class="particle p-6"></div>
+  </div>
+
+  <div class="auth-card-container">
+
+    <!-- LEFT COLUMN -->
+    <div class="auth-hero-column">
+
+      <div class="hero-top-bar">
+
+        <div class="hero-brand">
+
+
+          <div class="hero-brand-text">
+            <a
+  class="brand"
+  routerLink="/"
+  aria-label="NUQTAT DAM"
+>
+  <img
+    src="assets/logo.png"
+    alt="NUQTAT DAM"
+    class="brand-logo"
+  >
+
+  <span class="brand-name">
+    NUQTAT DAM
+  </span>
+</a>
+
+            <span class="hero-brand-sub">
+              نقطة دم • BLOOD NETWORK
+            </span>
+          </div>
+
+        </div>
+
+        <div class="live-network-badge">
+          <span class="pulse-dot"></span>
+          <span>Live Network • 24/7 Active</span>
+        </div>
+
+      </div>
+
+      <div class="hero-center-content">
+
+        <div class="hero-tag-pill">
+
+          <span class="material-symbols-outlined filled text-primary">
+            favorite
+          </span>
+
+          <span>
+            Save Lives • Donate Blood
+          </span>
+
+        </div>
+
+        <h1 class="hero-main-heading">
+          Every drop of blood is a
+          <span class="text-beacon">
+            beacon of hope.
+          </span>
+        </h1>
+
+        <p class="hero-subheading">
+          Join thousands of registered donors and hospitals across Egypt.
+          Connect instantly in emergency blood transfusion requests.
+        </p>
+
+        <div class="hero-counters-grid">
+
+          <div class="counter-card">
+
+            <div class="counter-icon-box bg-blue">
+              <span class="material-symbols-outlined">
+                group
+              </span>
+            </div>
+
+            <div class="counter-val">
+              12.5K+
+            </div>
+
+            <div class="counter-label">
+              Active Donors
+            </div>
+
+          </div>
+
+          <div class="counter-card">
+
+            <div class="counter-icon-box bg-teal">
+              <span class="material-symbols-outlined filled">
+                favorite
+              </span>
+            </div>
+
+            <div class="counter-val">
+              3,400+
+            </div>
+
+            <div class="counter-label">
+              Lives Saved
+            </div>
+
+          </div>
+
+          <div class="counter-card">
+
+            <div class="counter-icon-box bg-purple">
+              <span class="material-symbols-outlined">
+                local_hospital
+              </span>
+            </div>
+
+            <div class="counter-val">
+              24/7
+            </div>
+
+            <div class="counter-label">
+              Emergency Ready
+            </div>
+
+          </div>
+
+        </div>
+
+      </div>
+
+      <div class="hero-footer-proof">
+
+        <div class="avatar-stack">
+
+          <div class="avatar av-1">A</div>
+          <div class="avatar av-2">S</div>
+          <div class="avatar av-3">M</div>
+          <div class="avatar av-4">O</div>
+          <div class="avatar av-more">+50</div>
+
+        </div>
+
+        <div class="proof-text-col">
+
+          <div class="proof-stars">
+            ★★★★★
+            <span class="rating-num">
+              4.9/5.0
+            </span>
+          </div>
+
+          <p class="proof-desc">
+            Trusted by thousands of healthcare professionals
+          </p>
+
+        </div>
+
+      </div>
+
+    </div>
+
+    <!-- RIGHT COLUMN -->
+    <div class="auth-form-column">
+
+      <!-- TOP NAV -->
+      <div class="auth-top-nav">
+
+        <div class="tab-pill-group">
+
+          <a
+            routerLink="/login"
+            class="tab-btn"
+          >
+            <span class="material-symbols-outlined tab-icon">
+              login
+            </span>
+
+            <span>
+              Login
+            </span>
+          </a>
+
+          <button
+            type="button"
+            class="tab-btn active"
+          >
+            <span class="material-symbols-outlined tab-icon">
+              person_add
+            </span>
+
+            <span>
+              Register
+            </span>
+          </button>
+
+        </div>
+
+        <!-- LANGUAGE -->
+        <button
+          type="button"
+          class="theme-toggle-btn language-toggle-btn"
+          (click)="toggleLanguage()"
+          [title]="languageService.isArabic
+            ? ('Switch to English' | translate)
+            : ('Switch to Arabic' | translate)"
+        >
+
+          <span class="material-symbols-outlined">
+            translate
+          </span>
+
+        </button>
+
+        <!-- THEME -->
+        <button
+          type="button"
+          class="theme-toggle-btn"
+          (click)="toggleTheme()"
+          [title]="themeService.isDark
+            ? 'Switch to Light Mode'
+            : 'Switch to Dark Mode'"
+        >
+
+          <span
+            class="material-symbols-outlined"
+            *ngIf="!themeService.isDark"
+          >
+            dark_mode
+          </span>
+
+          <span
+            class="material-symbols-outlined light-sun-icon"
+            *ngIf="themeService.isDark"
+          >
+            light_mode
+          </span>
+
+        </button>
+
+      </div>
+
+      <!-- FORM TITLE -->
+      <div class="form-title-group">
+
+        <h2 class="form-main-title">
+          Create Account
+        </h2>
+
+        <p class="form-main-subtitle">
+          Choose your role and register in the network
+        </p>
+
+      </div>
+
+      <!-- ERROR -->
+      <div
+        class="auth-alert error-alert"
+        *ngIf="errorMessage"
+      >
+
+        <span class="material-symbols-outlined">
+          error
+        </span>
+
+        <span>
+          {{ errorMessage }}
+        </span>
+
+      </div>
+
+      <!-- FORM -->
+      <form
+        [formGroup]="registerForm"
+        (ngSubmit)="onSubmit()"
+        class="main-login-form"
+      >
+
+        <!-- ROLE -->
+        <div class="form-group">
+
+          <label class="form-label">
+            I am registering as:
+          </label>
+
+          <div class="role-selector-row">
+
+            <!-- DONOR -->
+            <button
+              type="button"
+              class="role-pill-btn"
+              [class.active]="f['role'].value === 'donor'"
+              (click)="setRole('donor')"
+            >
+
+              <span class="material-symbols-outlined role-icon">
+                volunteer_activism
+              </span>
+
+              <span class="role-pill-label">
+                Blood Donor
+              </span>
+
+            </button>
+
+            <!-- REQUESTER -->
+            <button
+              type="button"
+              class="role-pill-btn"
+              [class.active]="f['role'].value === 'requester'"
+              (click)="setRole('requester')"
+            >
+
+              <span class="material-symbols-outlined role-icon">
+                local_hospital
+              </span>
+
+              <span class="role-pill-label">
+                Blood Requester
+              </span>
+
+            </button>
+
+          </div>
+
+        </div>
+
+        <!-- NAME -->
+        <div class="form-group">
+
+          <label class="form-label">
+            Full Name
+          </label>
+
+          <div class="input-container">
+
+            <span class="material-symbols-outlined field-icon">
+              person
+            </span>
+
+            <input
+              type="text"
+              formControlName="name"
+              class="auth-input"
+              [class.is-invalid]="
+                f['name'].touched &&
+                f['name'].errors
+              "
+              placeholder="e.g. Dr. Ahmed Mansoor"
+            />
+
+          </div>
+
+          <div
+            class="form-error"
+            *ngIf="
+              f['name'].touched &&
+              f['name'].errors?.['required']
+            "
+          >
+            Full name is required.
+          </div>
+
+          <div
+            class="form-error"
+            *ngIf="
+              f['name'].touched &&
+              f['name'].errors?.['minlength']
+            "
+          >
+            Name must be at least 2 characters.
+          </div>
+
+        </div>
+
+        <!-- EMAIL -->
+        <div class="form-group">
+
+          <label class="form-label">
+            Email Address
+          </label>
+
+          <div class="input-container">
+
+            <span class="material-symbols-outlined field-icon">
+              mail
+            </span>
+
+            <input
+              type="email"
+              formControlName="email"
+              class="auth-input"
+              [class.is-invalid]="
+                f['email'].touched &&
+                f['email'].errors
+              "
+              placeholder="e.g. ahmed@nuqatdam.org"
+              autocomplete="email"
+            />
+
+          </div>
+
+          <div
+            class="form-error"
+            *ngIf="
+              f['email'].touched &&
+              f['email'].errors?.['required']
+            "
+          >
+            Email address is required.
+          </div>
+
+          <div
+            class="form-error"
+            *ngIf="
+              f['email'].touched &&
+              f['email'].errors?.['email']
+            "
+          >
+            Please enter a valid email address.
+          </div>
+
+        </div>
+
+        <!-- PASSWORD -->
+        <div class="form-group">
+
+          <label class="form-label">
+            Password
+          </label>
+
+          <div class="input-container">
+
+            <span class="material-symbols-outlined field-icon">
+              lock
+            </span>
+
+            <input
+              [type]="showPassword ? 'text' : 'password'"
+              formControlName="password"
+              class="auth-input"
+              [class.is-invalid]="
+                f['password'].touched &&
+                f['password'].errors
+              "
+              placeholder="At least 6 characters"
+              autocomplete="new-password"
+            />
+
+            <button
+              type="button"
+              class="password-eye-btn"
+              (click)="togglePasswordVisibility()"
+              tabindex="-1"
+            >
+
+              <span class="material-symbols-outlined">
+                {{
+                  showPassword
+                    ? 'visibility_off'
+                    : 'visibility'
+                }}
+              </span>
+
+            </button>
+
+          </div>
+
+          <div
+            class="form-error"
+            *ngIf="
+              f['password'].touched &&
+              f['password'].errors?.['required']
+            "
+          >
+            Password is required.
+          </div>
+
+          <div
+            class="form-error"
+            *ngIf="
+              f['password'].touched &&
+              f['password'].errors?.['minlength']
+            "
+          >
+            Password must be at least 6 characters.
+          </div>
+
+        </div>
+
+        <!-- SUBMIT -->
+        <button
+          type="submit"
+          class="auth-submit-btn"
+          [disabled]="isLoading"
+        >
+
+          <span
+            *ngIf="isLoading"
+            class="spinner-border spinner-border-sm mr-2"
+          ></span>
+
+          <span *ngIf="!isLoading">
+            Register Account &rarr;
+          </span>
+
+          <span *ngIf="isLoading">
+            Creating account...
+          </span>
+
+        </button>
+
+        <!-- BOTTOM LINK -->
+        <div class="form-bottom-link">
+
+          <span>
+            Already have an account?
+          </span>
+
+          <a
+            routerLink="/login"
+            class="link-highlight"
+          >
+            Sign in here
+          </a>
+
+        </div>
+
+      </form>
+
+    </div>
+
+  </div>
+
+</div>

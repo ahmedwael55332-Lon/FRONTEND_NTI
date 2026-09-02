@@ -1,0 +1,9 @@
+.footer { background: #1d3557; color: #fff; margin-top: 0; }
+.footer-inner { max-width: 1280px; margin: 0 auto; padding: 48px 40px 32px; display: flex; justify-content: space-between; gap: 32px; }
+.footer-brand { font-family: 'Plus Jakarta Sans', sans-serif; font-size: 22px; font-weight: 700; }
+.footer p { max-width: 520px; margin: 10px 0 0; color: #dbe7ef; line-height: 1.6; font-family: Inter, sans-serif; }
+.footer-links { display: flex; gap: 24px; align-items: flex-start; }
+.footer-links a { color: #fff; text-decoration: none; font: 600 14px Inter, sans-serif; opacity: .9; }
+.footer-links a:hover { color: #e63946; }
+.footer-bottom { border-top: 1px solid rgba(255,255,255,.15); padding: 18px 40px; text-align: center; color: #dbe7ef; font: 400 13px Inter, sans-serif; }
+@media (max-width: 700px) { .footer-inner { padding: 36px 20px 24px; flex-direction: column; } .footer-links { flex-wrap: wrap; } .footer-bottom { padding: 16px 20px; } }

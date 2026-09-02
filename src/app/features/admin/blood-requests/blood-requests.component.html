@@ -1,0 +1,331 @@
+<app-dashboard-layout
+  title="Admin Portal"
+  subtitle="System Oversight"
+  [navItems]="navItems"
+>
+
+  <div class="page-head">
+
+    <div>
+      <span class="eyebrow">
+        REQUEST MANAGEMENT
+      </span>
+
+      <h2>
+        Blood Requests
+      </h2>
+
+      <p>
+        Review requests and manage their backend-supported statuses.
+      </p>
+    </div>
+
+  </div>
+
+
+  <!-- Success -->
+
+  <div
+    *ngIf="successMessage"
+    class="notice success-notice"
+  >
+    {{ successMessage }}
+  </div>
+
+
+  <!-- Error -->
+
+  <div
+    *ngIf="errorMessage"
+    class="notice error-notice"
+  >
+    {{ errorMessage }}
+  </div>
+
+
+  <!-- Edit Form -->
+
+  <div
+    *ngIf="showForm && editingRequest"
+    class="card form-card"
+  >
+
+    <div class="form-head">
+
+      <div>
+
+        <h3>
+          Edit Blood Request
+        </h3>
+
+        <p>
+          Update the request information and status.
+        </p>
+
+      </div>
+
+      <button
+        type="button"
+        class="btn secondary"
+        (click)="closeForm()"
+        [disabled]="saving"
+      >
+        Cancel
+      </button>
+
+    </div>
+
+
+    <div class="form-grid">
+
+      <div class="field">
+
+        <label>
+          Blood Type
+        </label>
+
+        <select
+          [(ngModel)]="formData.bloodType"
+          name="bloodType"
+          [disabled]="saving"
+        >
+
+          <option value="A">A</option>
+          <option value="B">B</option>
+          <option value="AB">AB</option>
+          <option value="O">O</option>
+
+        </select>
+
+      </div>
+
+
+      <div class="field">
+
+        <label>
+          Rh
+        </label>
+
+        <select
+          [(ngModel)]="formData.rh"
+          name="rh"
+          [disabled]="saving"
+        >
+
+          <option value="Positive">
+            Positive
+          </option>
+
+          <option value="Negative">
+            Negative
+          </option>
+
+        </select>
+
+      </div>
+
+
+      <div class="field">
+
+        <label>
+          Urgency
+        </label>
+
+        <select
+          [(ngModel)]="formData.urgency"
+          name="urgency"
+          [disabled]="saving"
+        >
+
+          <option value="normal">
+            Normal
+          </option>
+
+          <option value="emergency">
+            Emergency
+          </option>
+
+        </select>
+
+      </div>
+
+
+      <div class="field">
+
+        <label>
+          Status
+        </label>
+
+        <select
+          [(ngModel)]="formData.status"
+          name="status"
+          [disabled]="saving"
+        >
+
+          <option
+            *ngFor="let status of statuses"
+            [value]="status"
+          >
+            {{ status }}
+          </option>
+
+        </select>
+
+      </div>
+
+    </div>
+
+
+    <div class="form-actions">
+
+      <button
+        type="button"
+        class="btn secondary"
+        (click)="closeForm()"
+        [disabled]="saving"
+      >
+        Cancel
+      </button>
+
+      <button
+        type="button"
+        class="btn primary"
+        (click)="saveRequest()"
+        [disabled]="saving"
+      >
+        {{ saving ? 'Saving...' : 'Update Request' }}
+      </button>
+
+    </div>
+
+  </div>
+
+
+  <!-- Loading -->
+
+  <div
+    *ngIf="loading"
+    class="card loading-card"
+  >
+    Loading blood requests...
+  </div>
+
+
+  <!-- Table -->
+
+  <div
+    *ngIf="!loading"
+    class="table-wrap"
+  >
+
+    <table class="table">
+
+      <thead>
+
+        <tr>
+          <th>Blood Type</th>
+          <th>Rh</th>
+          <th>Urgency</th>
+          <th>Status</th>
+          <th>Created</th>
+          <th>Actions</th>
+        </tr>
+
+      </thead>
+
+
+      <tbody>
+
+        <tr
+          *ngFor="let request of bloodRequests"
+        >
+
+          <td>
+            {{ request.bloodType }}
+          </td>
+
+          <td>
+            {{ request.rh }}
+          </td>
+
+          <td>
+
+            <span
+              class="badge"
+              [ngClass]="getUrgencyClass(request.urgency)"
+            >
+              {{ request.urgency }}
+            </span>
+
+          </td>
+
+          <td>
+
+            <span
+              class="badge"
+              [ngClass]="getStatusClass(request.status)"
+            >
+              {{ request.status }}
+            </span>
+
+          </td>
+
+          <td>
+            {{ formatDate(request.createdAt) }}
+          </td>
+
+          <td>
+
+            <div class="row-actions">
+
+              <button
+                type="button"
+                class="btn secondary"
+                (click)="openEditForm(request)"
+              >
+                Edit
+              </button>
+
+              <button
+                type="button"
+                class="btn secondary"
+                (click)="viewMatches(request)"
+              >
+                Matches
+              </button>
+
+              <button
+                type="button"
+                class="btn danger"
+                (click)="deleteRequest(request)"
+              >
+                Delete
+              </button>
+
+            </div>
+
+          </td>
+
+        </tr>
+
+
+        <tr
+          *ngIf="bloodRequests.length === 0"
+        >
+
+          <td
+            colspan="6"
+            class="empty"
+          >
+            No blood requests found.
+          </td>
+
+        </tr>
+
+      </tbody>
+
+    </table>
+
+  </div>
+
+</app-dashboard-layout>

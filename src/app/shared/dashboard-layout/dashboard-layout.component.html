@@ -1,0 +1,183 @@
+<div class="dashboard-shell">
+  <div class="dashboard-bg" aria-hidden="true">
+    <span class="dash-drop dash-drop-1">🩸</span>
+    <span class="dash-drop dash-drop-2">🩸</span>
+    <span class="dash-drop dash-drop-3">🩸</span>
+    <span class="dash-wave"></span>
+  </div>
+
+  <aside class="sidebar">
+
+    <!-- Brand -->
+   <a
+  class="brand"
+  routerLink="/"
+  aria-label="NUQTAT DAM"
+>
+  <img
+    src="assets/logo.png"
+    alt="NUQTAT DAM"
+    class="brand-logo"
+  >
+
+  <span class="brand-name">
+    NUQTAT DAM
+  </span>
+</a>
+
+
+    <!-- Portal Title -->
+    <div class="portal-label">
+      {{ title | translate }}
+    </div>
+
+    <p class="portal-subtitle">
+      {{ subtitle | translate }}
+    </p>
+
+
+    <!-- Main Navigation -->
+    <nav
+      class="sidebar-nav"
+      aria-label="Dashboard navigation"
+    >
+
+      <a
+        *ngFor="let item of navItems"
+        [routerLink]="item.route"
+        routerLinkActive="active"
+        [routerLinkActiveOptions]="{ exact: item.route === '/donor' || item.route === '/requester' || item.route === '/admin' }"
+      >
+
+        <span class="material-symbols-outlined">
+          {{ item.icon }}
+        </span>
+
+        <span>
+          {{ item.label | translate }}
+        </span>
+
+      </a>
+
+    </nav>
+
+
+    <!-- Bottom Navigation -->
+    <div class="sidebar-bottom">
+
+      <!-- Profile -->
+      <a
+        [routerLink]="profileRoute"
+        routerLinkActive="active"
+      >
+
+        <span class="material-symbols-outlined">
+          account_circle
+        </span>
+
+        <span>
+          {{ 'Profile' | translate }}
+        </span>
+
+      </a>
+
+
+      <!-- Dashboard -->
+      <a [routerLink]="dashboardRoute" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }">
+        <span class="material-symbols-outlined">dashboard</span>
+        <span>{{ 'Dashboard' | translate }}</span>
+      </a>
+
+      <!-- Logout -->
+      <button
+        type="button"
+        (click)="logout()"
+      >
+
+        <span class="material-symbols-outlined">
+          logout
+        </span>
+
+        <span>
+          {{ 'Logout' | translate }}
+        </span>
+
+      </button>
+
+    </div>
+
+  </aside>
+
+
+  <!-- Main -->
+  <section class="dashboard-main">
+
+    <!-- Topbar -->
+    <header class="topbar">
+
+      <div>
+
+        <span class="eyebrow">
+          NUQTAT DAM
+        </span>
+
+        <h1>
+          {{ title | translate }}
+        </h1>
+
+      </div>
+
+
+      <div class="topbar-actions">
+
+        <button
+          class="icon-button notification-button"
+          type="button"
+          aria-label="Notifications"
+          (click)="openNotifications()"
+          title="Notifications"
+        >
+          <span class="notification-dot"></span>
+          <span class="material-symbols-outlined">notifications</span>
+        </button>
+
+        <button
+          class="icon-button language-button"
+          type="button"
+          (click)="toggleLanguage()"
+          [attr.aria-label]="languageService.isArabic ? ('Switch to English' | translate) : ('Switch to Arabic' | translate)"
+          [title]="languageService.isArabic ? ('Switch to English' | translate) : ('Switch to Arabic' | translate)"
+        >
+          <span class="material-symbols-outlined">translate</span>
+        </button>
+
+        <button
+          class="icon-button theme-button"
+          type="button"
+          (click)="toggleTheme()"
+          [attr.aria-label]="themeService.isDark ? 'Switch to light mode' : 'Switch to dark mode'"
+          [title]="themeService.isDark ? 'Switch to Light Mode' : 'Switch to Dark Mode'"
+        >
+          <span class="material-symbols-outlined">{{ themeService.isDark ? 'light_mode' : 'dark_mode' }}</span>
+        </button>
+
+
+        <div class="avatar">
+          LS
+        </div>
+
+      </div>
+
+    </header>
+
+
+    <!-- Page Content -->
+    <main class="dashboard-content">
+
+      <ng-content></ng-content>
+
+    </main>
+
+  </section>
+
+</div>

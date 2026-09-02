@@ -1,0 +1,449 @@
+<div class="auth-page-wrapper">
+  <!-- Animated Background Aurora & Particles -->
+  <div class="ambient-glow glow-1"></div>
+  <div class="ambient-glow glow-2"></div>
+  <div class="ambient-glow glow-3"></div>
+
+  <!-- Floating Micro-Particles -->
+  <div class="particles-container">
+    <div class="particle p-1"></div>
+    <div class="particle p-2"></div>
+    <div class="particle p-3"></div>
+    <div class="particle p-4"></div>
+    <div class="particle p-5"></div>
+    <div class="particle p-6"></div>
+  </div>
+
+  <div class="auth-card-container">
+    <!-- Left Column: Hero & 3D Interactive Showcase -->
+    <div class="auth-hero-column">
+      <!-- Top Brand Row -->
+      <div class="hero-top-bar">
+        <div class="hero-brand">
+          
+          <div class="hero-brand-text">
+            <!-- <h2 class="hero-brand-title"></h2> -->
+            
+<a
+  class="brand"
+  routerLink="/"
+  aria-label="NUQTAT DAM"
+>
+  <img
+    src="assets/logo.png"
+    alt="NUQTAT DAM"
+    class="brand-logo"
+  >
+
+  <span class="brand-name">
+    NUQTAT DAM
+  </span>
+</a>
+
+            <span class="hero-brand-sub">نقطة دم • BLOOD NETWORK</span>
+          </div>
+        </div>
+
+        <div class="live-network-badge">
+          <span class="pulse-dot"></span>
+          <span>Live Network • 24/7 Active</span>
+        </div>
+      </div>
+
+      <!-- Hero Tag & Main Title -->
+      <div class="hero-center-content">
+        <div class="hero-tag-pill">
+          <span class="material-symbols-outlined filled text-primary heart-pulse">favorite</span>
+          <span>Save Lives • Donate Blood</span>
+        </div>
+
+        <h1 class="hero-main-heading">
+          Every drop of blood is a <span class="text-beacon">beacon of hope.</span>
+        </h1>
+
+        <p class="hero-subheading">
+          Join thousands of registered donors and hospitals across Egypt. Connect instantly in emergency blood transfusion requests.
+        </p>
+
+        <!-- 3D Blood Drop Graphic with Heartbeat ECG and Concentric Shockwaves -->
+        <div class="blood-drop-graphic-wrap">
+          <div class="blood-drop-illustration">
+            <!-- Concentric Pulse Shockwaves -->
+            <div class="drop-pulse-ripple ripple-1"></div>
+            <div class="drop-pulse-ripple ripple-2"></div>
+            <div class="drop-pulse-ripple ripple-3"></div>
+
+            <!-- 3D Liquid Blood Drop -->
+            <div class="drop-shape">
+              <svg viewBox="0 0 100 130" class="drop-svg">
+                <defs>
+                  <radialGradient id="dropGrad" cx="35%" cy="30%" r="70%">
+                    <stop offset="0%" stop-color="#ff4d6d" />
+                    <stop offset="35%" stop-color="#e11d48" />
+                    <stop offset="70%" stop-color="#dc2626" />
+                    <stop offset="90%" stop-color="#991b1b" />
+                    <stop offset="100%" stop-color="#450a0a" />
+                  </radialGradient>
+                  
+                  <linearGradient id="shimmerGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+                    <stop offset="0%" stop-color="#ffffff" stop-opacity="0.6" />
+                    <stop offset="40%" stop-color="#ffffff" stop-opacity="0.1" />
+                    <stop offset="100%" stop-color="#ffffff" stop-opacity="0.0" />
+                  </linearGradient>
+
+                  <linearGradient id="ecgGrad" x1="0%" y1="0%" x2="100%" y2="0%">
+                    <stop offset="0%" stop-color="#ffffff" stop-opacity="0.1" />
+                    <stop offset="50%" stop-color="#ffffff" stop-opacity="1" />
+                    <stop offset="100%" stop-color="#ffffff" stop-opacity="0.1" />
+                  </linearGradient>
+
+                  <filter id="dropShadow" x="-20%" y="-20%" width="150%" height="150%">
+                    <feDropShadow dx="0" dy="12" stdDeviation="10" flood-color="#dc2626" flood-opacity="0.45" />
+                  </filter>
+                </defs>
+
+                <!-- Base Drop Shape with Glowing Shadow -->
+                <path
+                  d="M50,8 C50,8 92,62 92,94 C92,116 73,126 50,126 C27,126 8,116 8,94 C8,62 50,8 50,8 Z"
+                  fill="url(#dropGrad)"
+                  filter="url(#dropShadow)"
+                />
+
+                <!-- Glass Light Highlight -->
+                <path
+                  d="M50,14 C50,14 80,62 80,88 C80,102 70,114 50,114 C38,114 26,106 22,94 C22,72 44,24 50,14 Z"
+                  fill="url(#shimmerGrad)"
+                  opacity="0.45"
+                />
+
+                <!-- Animated ECG Heartbeat Wave -->
+                <path
+                  class="ecg-line-pulse"
+                  d="M18,94 L34,94 L40,76 L46,112 L52,72 L58,104 L64,94 L82,94"
+                  fill="none"
+                  stroke="url(#ecgGrad)"
+                  stroke-width="2.5"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                />
+              </svg>
+            </div>
+          </div>
+        </div>
+
+        <!-- 3 Feature Counters with Hover Glow -->
+        <div class="hero-counters-grid">
+          <div class="counter-card counter-hover">
+            <div class="counter-icon-box bg-blue">
+              <span class="material-symbols-outlined">group</span>
+            </div>
+            <div class="counter-val">12.5K+</div>
+            <div class="counter-label">Active Donors</div>
+          </div>
+
+          <div class="counter-card counter-hover">
+            <div class="counter-icon-box bg-teal">
+              <span class="material-symbols-outlined filled">favorite</span>
+            </div>
+            <div class="counter-val">3,400+</div>
+            <div class="counter-label">Lives Saved</div>
+          </div>
+
+          <div class="counter-card counter-hover">
+            <div class="counter-icon-box bg-purple">
+              <span class="material-symbols-outlined">local_hospital</span>
+            </div>
+            <div class="counter-val">24/7</div>
+            <div class="counter-label">Emergency Ready</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Hero Footer Social Proof -->
+      <div class="hero-footer-proof">
+        <div class="avatar-stack">
+          <div class="avatar av-1">A</div>
+          <div class="avatar av-2">S</div>
+          <div class="avatar av-3">M</div>
+          <div class="avatar av-4">O</div>
+          <div class="avatar av-more">+50</div>
+        </div>
+        <div class="proof-text-col">
+          <div class="proof-stars">★★★★★ <span class="rating-num">4.9/5.0</span></div>
+          <p class="proof-desc">Trusted by thousands of healthcare professionals</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Right Column: Interactive Login Card -->
+    <div class="auth-form-column">
+      <!-- Top Navigation Tabs (Login / Register / Theme) -->
+      <div class="auth-top-nav">
+        <div class="tab-pill-group">
+          <button type="button" class="tab-btn active">
+            <span class="material-symbols-outlined tab-icon">login</span>
+            <span>Login</span>
+          </button>
+          <a routerLink="/register" class="tab-btn">
+            <span class="material-symbols-outlined tab-icon">person_add</span>
+            <span>Register</span>
+          </a>
+        </div>
+
+        <button
+          type="button"
+          class="theme-toggle-btn language-toggle-btn"
+          (click)="toggleLanguage()"
+          [title]="languageService.isArabic ? ('Switch to English' | translate) : ('Switch to Arabic' | translate)"
+        >
+          <span class="material-symbols-outlined">translate</span>
+        </button>
+
+        <button
+          type="button"
+          class="theme-toggle-btn"
+          (click)="toggleTheme()"
+          [title]="themeService.isDark ? 'Switch to Light Mode' : 'Switch to Dark Mode'"
+        >
+          <span class="material-symbols-outlined" *ngIf="!themeService.isDark">dark_mode</span>
+          <span class="material-symbols-outlined light-sun-icon" *ngIf="themeService.isDark">light_mode</span>
+        </button>
+      </div>
+
+      <!-- Form Title Header -->
+      <div class="form-title-group">
+        <h2 class="form-main-title">Welcome Back <span class="wave-hand">👋</span></h2>
+        <p class="form-main-subtitle">Enter your credentials to access your dashboard</p>
+      </div>
+
+      <!-- Error Alert with Shake Animation -->
+      <div class="auth-alert error-alert animate-shake" *ngIf="errorMessage">
+        <span class="material-symbols-outlined">error</span>
+        <span>{{ errorMessage }}</span>
+      </div>
+
+      <!-- Form -->
+      <form [formGroup]="loginForm" (ngSubmit)="onSubmit()" class="main-login-form">
+        <!-- Email Input -->
+        <div class="form-group">
+          <label class="form-label">Email Address</label>
+          <div class="input-container">
+            <span class="material-symbols-outlined field-icon">mail</span>
+            <input
+              type="email"
+              formControlName="email"
+              class="auth-input"
+              [class.is-invalid]="f['email'].touched && f['email'].errors"
+              placeholder="e.g. donor@nuqatdam.org"
+              autocomplete="email"
+            />
+          </div>
+          <div class="form-error" *ngIf="f['email'].touched && f['email'].errors?.['required']">
+            Email address is required.
+          </div>
+          <div class="form-error" *ngIf="f['email'].touched && f['email'].errors?.['email']">
+            Please enter a valid email address.
+          </div>
+        </div>
+
+        <!-- Password Input -->
+        <div class="form-group">
+          <div class="password-header-row">
+            <label class="form-label">Password</label>
+            <a href="javascript:void(0)" class="forgot-link" (click)="openForgotModal()">Forgot password?</a>
+          </div>
+          <div class="input-container">
+            <span class="material-symbols-outlined field-icon">lock</span>
+            <input
+              [type]="showPassword ? 'text' : 'password'"
+              formControlName="password"
+              class="auth-input"
+              [class.is-invalid]="f['password'].touched && f['password'].errors"
+              placeholder="••••••••"
+              autocomplete="current-password"
+            />
+            <button
+              type="button"
+              class="password-eye-btn"
+              (click)="togglePasswordVisibility()"
+              tabindex="-1"
+            >
+              <span class="material-symbols-outlined">
+                {{ showPassword ? 'visibility_off' : 'visibility' }}
+              </span>
+            </button>
+          </div>
+          <div class="form-error" *ngIf="f['password'].touched && f['password'].errors?.['required']">
+            Password is required.
+          </div>
+          <div class="form-error" *ngIf="f['password'].touched && f['password'].errors?.['minlength']">
+            Password must be at least 6 characters.
+          </div>
+        </div>
+
+        <!-- Remember Me Checkbox -->
+        <div class="remember-row">
+          <label class="custom-checkbox-label">
+            <input type="checkbox" checked />
+            <span class="checkbox-box"></span>
+            <span class="checkbox-text">Remember me on this device</span>
+          </label>
+        </div>
+
+        <!-- Sign In Submit Button with Ripple & Shimmer -->
+        <button
+          type="submit"
+          class="auth-submit-btn"
+          [disabled]="isLoading"
+        >
+          <span *ngIf="isLoading" class="spinner-border spinner-border-sm mr-2"></span>
+          <span *ngIf="!isLoading" class="btn-text-content">
+            <span>Sign In to Account</span>
+            <span class="material-symbols-outlined arrow-slide">arrow_forward</span>
+          </span>
+          <span *ngIf="isLoading">Authenticating...</span>
+        </button>
+
+        <!-- Or Divider -->
+        <div class="or-divider">
+          <span class="divider-line"></span>
+          <span class="divider-text">Or sign in with</span>
+          <span class="divider-line"></span>
+        </div>
+
+        <!-- Google Account Button -->
+        <button type="button" class="google-login-btn" (click)="fillDemo('admin')">
+          <svg class="google-icon" viewBox="0 0 24 24">
+            <path fill="#4285F4" d="M23.745 12.27c0-.7-.06-1.4-.19-2.07H12v4.51h6.6c-.29 1.52-1.14 2.82-2.4 3.68v3.05h3.88c2.27-2.09 3.66-5.17 3.66-9.17z"/>
+            <path fill="#34A853" d="M12 24c3.24 0 5.95-1.08 7.93-2.91l-3.88-3.05c-1.08.72-2.45 1.16-4.05 1.16-3.12 0-5.77-2.1-6.72-4.93H1.25v3.15C3.26 21.36 7.34 24 12 24z"/>
+            <path fill="#FBBC05" d="M5.28 14.27c-.25-.72-.38-1.49-.38-2.27s.13-1.55.38-2.27V6.58H1.25C.45 8.18 0 9.99 0 12s.45 3.82 1.25 5.42l4.03-3.15z"/>
+            <path fill="#EA4335" d="M12 4.75c1.77 0 3.35.61 4.6 1.8l3.42-3.42C17.95 1.19 15.24 0 12 0 7.34 0 3.26 2.64 1.25 6.58l4.03 3.15c.95-2.83 3.6-4.98 6.72-4.98z"/>
+          </svg>
+          <span class="google-btn-text">Google Account</span>
+        </button>
+
+        <!-- Footer Link -->
+        <div class="form-bottom-link">
+          <span>Don't have an account yet?</span>
+          <a routerLink="/register" class="link-highlight">Create a new account</a>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- Forgot Password Modal -->
+  <div class="modal-backdrop" *ngIf="showForgotModal">
+    <div class="modal-card">
+      <div class="modal-header">
+        <h3 class="modal-title">
+          <span class="material-symbols-outlined" style="vertical-align: middle; margin-right: 6px; color: var(--primary);">lock_reset</span>
+          Reset Password
+        </h3>
+        <button type="button" class="modal-close" (click)="closeForgotModal()">✕</button>
+      </div>
+
+      <div class="modal-body">
+        <!-- Error / Info alerts -->
+        <div class="auth-alert error-alert" *ngIf="forgotError" style="margin-bottom: 16px;">
+          <span class="material-symbols-outlined">error</span>
+          <span>{{ forgotError }}</span>
+        </div>
+        <div class="auth-alert success-alert" *ngIf="forgotMessage && forgotStep !== 'email'" style="margin-bottom: 16px; background: rgba(16, 185, 129, 0.1); border: 1px solid #10b981; color: #065f46; border-radius: 8px; padding: 10px 14px; display: flex; align-items: center; gap: 8px;">
+          <span class="material-symbols-outlined" style="color: #10b981;">check_circle</span>
+          <span>{{ forgotMessage }}</span>
+        </div>
+
+        <!-- Step 1: Request OTP -->
+        <div *ngIf="forgotStep === 'email'">
+          <p style="font-size: 0.9rem; color: var(--text-secondary); margin-bottom: 16px;">
+            Enter the email address associated with your account. We will generate a secure 6-digit recovery OTP code.
+          </p>
+          <div class="form-group">
+            <label class="form-label">Email Address</label>
+            <div class="input-container">
+              <span class="material-symbols-outlined field-icon">mail</span>
+              <input
+                type="email"
+                [(ngModel)]="forgotEmail"
+                name="forgotEmailInput"
+                class="auth-input"
+                placeholder="e.g. user@nuqatdam.org"
+              />
+            </div>
+          </div>
+          <button
+            type="button"
+            class="submit-btn"
+            style="width: 100%; margin-top: 16px;"
+            [disabled]="forgotLoading"
+            (click)="sendRecoveryCode()"
+          >
+            <span *ngIf="!forgotLoading">Send Recovery Code</span>
+            <span *ngIf="forgotLoading">Generating Code...</span>
+          </button>
+        </div>
+
+        <!-- Step 2: Confirm OTP & New Password -->
+        <div *ngIf="forgotStep === 'code'">
+          <p style="font-size: 0.9rem; color: var(--text-secondary); margin-bottom: 16px;">
+            Enter the 6-digit OTP code sent to <strong>{{ forgotEmail }}</strong> and set your new password.
+          </p>
+          <div class="form-group" style="margin-bottom: 14px;">
+            <label class="form-label">6-Digit Recovery Code (OTP)</label>
+            <div class="input-container">
+              <span class="material-symbols-outlined field-icon">pin</span>
+              <input
+                type="text"
+                [(ngModel)]="forgotCode"
+                name="forgotCodeInput"
+                class="auth-input"
+                placeholder="123456"
+                maxlength="6"
+              />
+            </div>
+          </div>
+          <div class="form-group">
+            <label class="form-label">New Password</label>
+            <div class="input-container">
+              <span class="material-symbols-outlined field-icon">lock</span>
+              <input
+                type="password"
+                [(ngModel)]="forgotNewPassword"
+                name="forgotNewPasswordInput"
+                class="auth-input"
+                placeholder="At least 6 characters"
+              />
+            </div>
+          </div>
+          <button
+            type="button"
+            class="submit-btn"
+            style="width: 100%; margin-top: 16px;"
+            [disabled]="forgotLoading"
+            (click)="confirmResetPassword()"
+          >
+            <span *ngIf="!forgotLoading">Reset & Update Password</span>
+            <span *ngIf="forgotLoading">Updating...</span>
+          </button>
+        </div>
+
+        <!-- Step 3: Success -->
+        <div *ngIf="forgotStep === 'success'" style="text-align: center; padding: 16px 0;">
+          <span class="material-symbols-outlined" style="font-size: 48px; color: #10b981; margin-bottom: 12px;">verified</span>
+          <h4 style="margin: 0 0 8px 0; font-weight: 700;">Password Updated!</h4>
+          <p style="font-size: 0.9rem; color: var(--text-secondary); margin-bottom: 20px;">
+            Your password has been reset successfully. You can now log in with your new credentials.
+          </p>
+          <button
+            type="button"
+            class="submit-btn"
+            style="width: 100%;"
+            (click)="closeForgotModal()"
+          >
+            Back to Login
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
