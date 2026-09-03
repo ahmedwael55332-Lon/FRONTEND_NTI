@@ -1,0 +1,309 @@
+<app-dashboard-layout
+  title="Donor Portal"
+  subtitle="Your Donation Profile"
+  [navItems]="navItems"
+>
+
+  <div class="page-head">
+
+    <div>
+      <span class="eyebrow">DONOR PROFILE</span>
+
+      <h2>
+        {{ profileExists ? 'My Donor Profile' : 'Create Donor Profile' }}
+      </h2>
+
+      <p>
+        {{
+          profileExists
+            ? 'Manage your eligibility and availability information.'
+            : 'Complete your donor profile to start using donor services.'
+        }}
+      </p>
+    </div>
+
+    <div class="actions">
+
+      <button
+        *ngIf="profileExists"
+        type="button"
+        class="btn secondary"
+        (click)="medicalCheck()"
+        [disabled]="loading || saving"
+      >
+        <span class="material-symbols-outlined">
+          health_and_safety
+        </span>
+
+        Check Eligibility
+      </button>
+
+      <button
+        type="button"
+        class="btn primary"
+        (click)="saveChanges()"
+        [disabled]="saving || loading"
+      >
+        {{ saving ? 'Saving...' : (profileExists ? 'Save Changes' : 'Create Profile') }}
+      </button>
+
+    </div>
+
+  </div>
+
+
+  <!-- Loading -->
+
+  <div
+    class="card notice"
+    *ngIf="loading"
+  >
+    Loading donor profile...
+  </div>
+
+
+  <!-- Error -->
+
+  <div
+    class="card error-box"
+    *ngIf="!loading && errorMessage"
+  >
+    {{ errorMessage }}
+  </div>
+
+
+  <!-- Success -->
+
+  <div
+    class="card success-box"
+    *ngIf="!loading && successMessage"
+  >
+    {{ successMessage }}
+  </div>
+
+
+  <!-- Profile Form -->
+
+  <div
+    class="card"
+    *ngIf="!loading && !errorMessage"
+  >
+
+    <form
+      [formGroup]="donorForm"
+      (ngSubmit)="saveChanges()"
+      novalidate
+    >
+
+      <div class="form-grid">
+
+        <!-- Blood Type -->
+
+        <div class="field">
+
+          <label for="bloodType">
+            Blood Type
+          </label>
+
+          <select
+            id="bloodType"
+            formControlName="bloodType"
+            [class.is-invalid]="donorForm.get('bloodType')?.touched && donorForm.get('bloodType')?.invalid"
+          >
+            <option value="" disabled>
+              -- Select Blood Type --
+            </option>
+            <option value="A">A</option>
+            <option value="B">B</option>
+            <option value="AB">AB</option>
+            <option value="O">O</option>
+          </select>
+
+          <div
+            class="field-error"
+            *ngIf="donorForm.get('bloodType')?.touched && donorForm.get('bloodType')?.hasError('required')"
+          >
+            Blood type is required.
+          </div>
+
+        </div>
+
+
+        <!-- Rh -->
+
+        <div class="field">
+
+          <label for="rh">
+            Rh
+          </label>
+
+          <select
+            id="rh"
+            formControlName="rh"
+            [class.is-invalid]="donorForm.get('rh')?.touched && donorForm.get('rh')?.invalid"
+          >
+            <option value="" disabled>
+              -- Select Rh Factor --
+            </option>
+
+            <option value="Positive">
+              Positive
+            </option>
+
+            <option value="Negative">
+              Negative
+            </option>
+          </select>
+
+          <div
+            class="field-error"
+            *ngIf="donorForm.get('rh')?.touched && donorForm.get('rh')?.hasError('required')"
+          >
+            Rh factor is required.
+          </div>
+
+        </div>
+
+
+        <!-- Last Donation -->
+
+        <div class="field">
+
+          <label for="lastDonationDate">
+            Last Donation Date
+          </label>
+
+          <input
+            id="lastDonationDate"
+            type="date"
+            formControlName="lastDonationDate"
+          >
+
+          <small>
+            Leave empty if you have never donated.
+          </small>
+
+        </div>
+
+
+        <!-- Availability -->
+
+        <div class="field">
+
+          <label for="availabilityStatus">
+            Availability Status
+          </label>
+
+          <select
+            id="availabilityStatus"
+            formControlName="availabilityStatus"
+            [class.is-invalid]="donorForm.get('availabilityStatus')?.touched && donorForm.get('availabilityStatus')?.invalid"
+          >
+
+            <option value="" disabled>
+              -- Select Availability --
+            </option>
+
+            <option value="Available">
+              Available
+            </option>
+
+            <option value="Unavailable">
+              Unavailable
+            </option>
+
+          </select>
+
+          <div
+            class="field-error"
+            *ngIf="donorForm.get('availabilityStatus')?.touched && donorForm.get('availabilityStatus')?.hasError('required')"
+          >
+            Availability status is required.
+          </div>
+
+        </div>
+
+
+        <!-- Eligibility -->
+
+        <div class="field full">
+
+          <label>
+            Eligibility Status
+          </label>
+
+          <div class="eligibility-box">
+
+            <span
+              class="badge"
+              [ngClass]="{
+                eligible: eligibilityStatus === 'Eligible',
+                deferred: eligibilityStatus === 'Deferred',
+                unknown: !eligibilityStatus
+              }"
+            >
+              {{ eligibilityStatus || 'Not calculated yet' }}
+            </span>
+
+            <span class="eligibility-text">
+              Automatically calculated by the backend.
+            </span>
+
+          </div>
+
+        </div>
+
+      </div>
+
+
+      <!-- Bottom Actions -->
+
+      <div class="actions form-actions">
+
+        <button
+          type="button"
+          class="btn secondary"
+          (click)="cancel()"
+          [disabled]="saving"
+        >
+          Cancel
+        </button>
+
+        <button
+          type="submit"
+          class="btn primary"
+          [disabled]="saving"
+        >
+          {{ saving ? 'Saving...' : (profileExists ? 'Save Changes' : 'Create Profile') }}
+        </button>
+
+      </div>
+
+    </form>
+
+  </div>
+
+
+  <!-- Eligibility Result -->
+
+  <div
+    class="card eligibility-result"
+    *ngIf="daysSinceLastDonation !== null"
+  >
+
+    <span class="eyebrow">
+      MEDICAL ELIGIBILITY
+    </span>
+
+    <h3>
+      {{ eligibilityStatus }}
+    </h3>
+
+    <p>
+      {{ daysSinceLastDonation }}
+      days since your last donation.
+    </p>
+
+  </div>
+
+</app-dashboard-layout>
