@@ -1,0 +1,301 @@
+<app-dashboard-layout
+  title="Requester Portal"
+  subtitle="Manage blood requests"
+  [navItems]="navItems"
+>
+
+  <!-- Header -->
+  <div class="welcome">
+
+    <div>
+
+      <span class="eyebrow">
+        REQUESTER DASHBOARD
+      </span>
+
+      <h2>
+        Manage your blood requests
+      </h2>
+
+      <p>
+        Create a request and follow its backend status.
+      </p>
+
+    </div>
+
+    <button
+      class="btn btn-primary"
+      type="button"
+      routerLink="/requester/blood-requests/create"
+    >
+
+      <span class="material-symbols-outlined">
+        add
+      </span>
+
+      Create Request
+
+    </button>
+
+  </div>
+
+
+  <!-- Personal request summary -->
+  <section class="request-stats">
+    <div class="request-stat"><span class="material-symbols-outlined">assignment</span><div><small>Total Requests</small><strong>{{ requests.length }}</strong></div></div>
+    <div class="request-stat urgent"><span class="material-symbols-outlined">emergency</span><div><small>Emergency</small><strong>{{ emergencyCount }}</strong></div></div>
+    <div class="request-stat pending"><span class="material-symbols-outlined">pending_actions</span><div><small>Pending</small><strong>{{ pendingCount }}</strong></div></div>
+    <div class="request-stat done"><span class="material-symbols-outlined">task_alt</span><div><small>Completed</small><strong>{{ completedCount }}</strong></div></div>
+  </section>
+
+  <!-- Emergency spotlight -->
+  <section class="emergency-banner" *ngIf="emergencyCount > 0">
+    <div class="emergency-icon"><span class="material-symbols-outlined">emergency</span></div>
+    <div><strong>Emergency requests need attention</strong><p>You have {{ emergencyCount }} emergency request{{ emergencyCount === 1 ? '' : 's' }} in your account.</p></div>
+    <a routerLink="/requester/blood-requests">Review requests <span class="material-symbols-outlined">arrow_forward</span></a>
+  </section>
+
+  <!-- Error -->
+  <div
+    class="error-box"
+    *ngIf="!loading && errorMessage"
+  >
+
+    {{ errorMessage }}
+
+    <button
+      type="button"
+      class="retry-btn"
+      (click)="loadRequests()"
+    >
+      Try Again
+    </button>
+
+  </div>
+
+
+  <!-- Recent Requests -->
+  <section class="panel">
+
+    <div class="panel-head">
+
+      <div>
+
+        <h3>
+          Recent Requests
+        </h3>
+
+        <p>
+          Your latest blood requests from the backend.
+        </p>
+
+      </div>
+
+      <a
+        routerLink="/requester/blood-requests"
+      >
+        View all
+      </a>
+
+    </div>
+
+    <div class="request-filters">
+      <label>Status <select [(ngModel)]="filterStatus"><option value="all">All statuses</option><option value="pending">Pending</option><option value="matched">Matched</option><option value="completed">Completed</option><option value="cancelled">Cancelled</option></select></label>
+      <label>Urgency <select [(ngModel)]="filterUrgency"><option value="all">All urgency</option><option value="emergency">Emergency</option><option value="normal">Normal</option></select></label>
+      <span class="result-count">{{ filteredRequests.length }} result{{ filteredRequests.length === 1 ? '' : 's' }}</span>
+    </div>
+
+
+    <!-- Loading -->
+    <div
+      class="loading-state"
+      *ngIf="loading"
+    >
+
+      <span class="material-symbols-outlined">
+        progress_activity
+      </span>
+
+      Loading your requests...
+
+    </div>
+
+
+    <!-- Requests Table -->
+    <div
+      class="table-wrap"
+      *ngIf="!loading && !errorMessage && recentRequests.length > 0"
+    >
+
+      <table class="table">
+
+        <thead>
+
+          <tr>
+
+            <th>
+              Blood Type
+            </th>
+
+            <th>
+              Rh
+            </th>
+
+            <th>
+              Urgency
+            </th>
+
+            <th>
+              Status
+            </th>
+
+            <th>
+              Created
+            </th>
+
+          </tr>
+
+        </thead>
+
+
+        <tbody>
+
+          <tr
+            *ngFor="let request of recentRequests"
+          >
+
+            <td>
+              <strong>
+                {{ request.bloodType }}
+              </strong>
+            </td>
+
+            <td>
+              {{ request.rh }}
+            </td>
+
+            <td>
+
+              <span
+                class="urgency"
+                [ngClass]="getUrgencyClass(request.urgency)"
+              >
+                {{ request.urgency }}
+              </span>
+
+            </td>
+
+            <td>
+
+              <span
+                class="badge"
+                [ngClass]="getStatusClass(request.status)"
+              >
+                {{ request.status }}
+              </span>
+
+            </td>
+
+            <td>
+
+              {{
+                request.createdAt
+                  ? (request.createdAt | date:'mediumDate')
+                  : '—'
+              }}
+
+            </td>
+
+          </tr>
+
+        </tbody>
+
+      </table>
+
+    </div>
+
+
+    <!-- Empty -->
+    <div
+      class="empty-state"
+      *ngIf="
+        !loading &&
+        !errorMessage &&
+        recentRequests.length === 0
+      "
+    >
+
+      <span class="material-symbols-outlined">
+        assignment
+      </span>
+
+      <strong>
+        No requests yet
+      </strong>
+
+      <p>
+        Create your first blood request to see it here.
+      </p>
+
+      <a
+        class="btn btn-primary"
+        routerLink="/requester/blood-requests/create"
+      >
+        Create Request
+      </a>
+
+    </div>
+
+  </section>
+
+
+  <!-- Status Legend -->
+  <section class="status-row">
+
+    <span class="status pending">
+      pending
+    </span>
+
+    <span class="status matched">
+      matched
+    </span>
+
+    <span class="status completed">
+      completed
+    </span>
+
+    <span class="status cancelled">
+      cancelled
+    </span>
+
+  </section>
+
+
+  <!-- Emergency / Matching -->
+  <section class="alert">
+
+    <span class="material-symbols-outlined">
+      group
+    </span>
+
+    <div>
+
+      <strong>
+        Compatible Donors
+      </strong>
+
+      <p>
+        Find donors compatible with your blood requests.
+      </p>
+
+    </div>
+
+    <a
+      routerLink="/requester/matches"
+    >
+      Find Donors
+    </a>
+
+  </section>
+
+</app-dashboard-layout>
