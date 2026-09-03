@@ -21,6 +21,8 @@
   animation: confirm-in 160ms ease-out;
 }
 
+/*  */
+
 .confirm-icon {
   width: 52px;
   height: 52px;
@@ -38,7 +40,7 @@
 
 .confirm-content h2 {
   margin: 0 0 8px;
-  font-family: 'Plus Jakarta Sans', sans-serif;
+  font-family: "Plus Jakarta Sans", sans-serif;
   font-size: 21px;
 }
 
@@ -62,7 +64,9 @@
   border-radius: 10px;
   cursor: pointer;
   font-weight: 600;
-  transition: transform 120ms ease, opacity 120ms ease;
+  transition:
+    transform 120ms ease,
+    opacity 120ms ease;
 }
 
 .confirm-btn:hover:not(:disabled) {
@@ -90,23 +94,37 @@
   display: inline-block;
   margin-right: 7px;
   vertical-align: -2px;
-  border: 2px solid rgba(255,255,255,.45);
+  border: 2px solid rgba(255, 255, 255, 0.45);
   border-top-color: #fff;
   border-radius: 50%;
   animation: spin 700ms linear infinite;
 }
 
 @keyframes spin {
-  to { transform: rotate(360deg); }
+  to {
+    transform: rotate(360deg);
+  }
 }
 
 @keyframes confirm-in {
-  from { opacity: 0; transform: translateY(6px) scale(.98); }
-  to { opacity: 1; transform: translateY(0) scale(1); }
+  from {
+    opacity: 0;
+    transform: translateY(6px) scale(0.98);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
 }
 
 @media (max-width: 520px) {
-  .confirm-dialog { padding: 22px; }
-  .confirm-actions { flex-direction: column-reverse; }
-  .confirm-btn { width: 100%; }
+  .confirm-dialog {
+    padding: 22px;
+  }
+  .confirm-actions {
+    flex-direction: column-reverse;
+  }
+  .confirm-btn {
+    width: 100%;
+  }
 }
