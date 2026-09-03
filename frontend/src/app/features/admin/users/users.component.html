@@ -1,0 +1,307 @@
+<app-dashboard-layout
+  title="Admin Portal"
+  subtitle="System Oversight"
+  [navItems]="navItems"
+>
+
+  <div class="page-head">
+
+    <div>
+      <span class="eyebrow">USER MANAGEMENT</span>
+
+      <h2>Users</h2>
+
+      <p>
+        Manage registered accounts and their roles.
+      </p>
+    </div>
+
+    <div class="actions">
+
+      <button
+        type="button"
+        class="btn primary"
+        (click)="openCreateForm()"
+      >
+        <span class="material-symbols-outlined">
+          person_add
+        </span>
+
+        Add User
+      </button>
+
+    </div>
+
+  </div>
+
+
+  <!-- Messages -->
+
+  <div
+    class="card success-box"
+    *ngIf="successMessage"
+  >
+    {{ successMessage }}
+  </div>
+
+  <div
+    class="card error-box"
+    *ngIf="errorMessage"
+  >
+    {{ errorMessage }}
+  </div>
+
+
+  <!-- Loading -->
+
+  <div
+    class="card notice"
+    *ngIf="loading"
+  >
+    Loading users...
+  </div>
+
+
+  <!-- Create / Edit Form -->
+
+  <div
+    class="card form-card"
+    *ngIf="showForm"
+  >
+
+    <div class="form-head">
+
+      <div>
+        <span class="eyebrow">
+          {{ editingUser ? 'EDIT USER' : 'CREATE USER' }}
+        </span>
+
+        <h3>
+          {{ editingUser ? 'Edit User' : 'Create New User' }}
+        </h3>
+      </div>
+
+      <button
+        type="button"
+        class="close-btn"
+        (click)="closeForm()"
+        [disabled]="saving"
+      >
+        <span class="material-symbols-outlined">
+          close
+        </span>
+      </button>
+
+    </div>
+
+
+    <div class="form-grid">
+
+      <div class="field">
+
+        <label for="name">
+          Name
+        </label>
+
+        <input
+          id="name"
+          type="text"
+          [(ngModel)]="form.name"
+          placeholder="Enter name"
+        >
+
+      </div>
+
+
+      <div class="field">
+
+        <label for="email">
+          Email
+        </label>
+
+        <input
+          id="email"
+          type="email"
+          [(ngModel)]="form.email"
+          placeholder="Enter email"
+        >
+
+      </div>
+
+
+      <div class="field">
+
+        <label for="password">
+          Password
+        </label>
+
+        <input
+          id="password"
+          type="password"
+          [(ngModel)]="form.password"
+          [placeholder]="editingUser ? 'Leave empty to keep current password' : 'Enter password'"
+        >
+
+      </div>
+
+
+      <div class="field">
+
+        <label for="role">
+          Role
+        </label>
+
+        <select
+          id="role"
+          [(ngModel)]="form.role"
+        >
+
+          <option value="donor">
+            Donor
+          </option>
+
+          <option value="requester">
+            Requester
+          </option>
+
+          <option value="admin">
+            Admin
+          </option>
+
+        </select>
+
+      </div>
+
+    </div>
+
+
+    <div class="form-actions">
+
+      <button
+        type="button"
+        class="btn secondary"
+        (click)="closeForm()"
+        [disabled]="saving"
+      >
+        Cancel
+      </button>
+
+      <button
+        type="button"
+        class="btn primary"
+        (click)="saveUser()"
+        [disabled]="saving"
+      >
+        {{ saving ? 'Saving...' : (editingUser ? 'Update User' : 'Create User') }}
+      </button>
+
+    </div>
+
+  </div>
+
+
+  <!-- Users Table -->
+
+  <div
+    class="table-wrap"
+    *ngIf="!loading"
+  >
+
+    <table class="table">
+
+      <thead>
+
+        <tr>
+          <th>Name</th>
+          <th>Email</th>
+          <th>Role</th>
+          <th>Actions</th>
+        </tr>
+
+      </thead>
+
+
+      <tbody>
+
+        <tr
+          *ngFor="let user of users"
+        >
+
+          <td>
+            <strong>
+              {{ user.name }}
+            </strong>
+          </td>
+
+          <td>
+            {{ user.email }}
+          </td>
+
+          <td>
+
+            <span
+              class="badge"
+              [ngClass]="{
+                donor: user.role === 'donor',
+                requester: user.role === 'requester',
+                admin: user.role === 'admin'
+              }"
+            >
+              {{ user.role }}
+            </span>
+
+          </td>
+
+          <td>
+
+            <div class="row-actions">
+
+              <button
+                type="button"
+                class="btn secondary small"
+                (click)="openEditForm(user)"
+              >
+                <span class="material-symbols-outlined">
+                  edit
+                </span>
+
+                Edit
+              </button>
+
+              <button
+                type="button"
+                class="btn danger small"
+                (click)="deleteUser(user)"
+              >
+                <span class="material-symbols-outlined">
+                  delete
+                </span>
+
+                Delete
+              </button>
+
+            </div>
+
+          </td>
+
+        </tr>
+
+
+        <tr *ngIf="users.length === 0">
+
+          <td
+            colspan="4"
+            class="empty"
+          >
+            No users found.
+          </td>
+
+        </tr>
+
+      </tbody>
+
+    </table>
+
+  </div>
+
+</app-dashboard-layout>
