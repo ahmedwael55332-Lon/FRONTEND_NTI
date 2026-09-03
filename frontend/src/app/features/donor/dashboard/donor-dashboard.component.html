@@ -1,0 +1,247 @@
+<app-dashboard-layout
+  title="Donor Portal"
+  subtitle="Your donation profile"
+  [navItems]="navItems"
+>
+
+  <!-- Header -->
+
+  <div class="welcome">
+
+    <div>
+
+      <span class="eyebrow">
+        DONOR DASHBOARD
+      </span>
+
+      <h2>
+        Ready to make a difference?
+      </h2>
+
+      <p>
+        Keep your donor information and availability up to date.
+      </p>
+
+    </div>
+
+    <button
+      class="btn btn-primary"
+      routerLink="/donor/medical-check"
+    >
+      <span class="material-symbols-outlined">
+        health_and_safety
+      </span>
+
+      Check Eligibility
+    </button>
+
+  </div>
+
+
+  <!-- Loading -->
+
+  <div
+    class="dashboard-message loading-message"
+    *ngIf="loading"
+  >
+    Loading donor information...
+  </div>
+
+
+  <!-- Error -->
+
+  <div
+    class="dashboard-message error-message"
+    *ngIf="!loading && errorMessage"
+  >
+    {{ errorMessage }}
+  </div>
+
+
+  <!-- Profile Not Created Yet -->
+
+  <div
+    class="card profile-prompt"
+    *ngIf="!loading && !errorMessage && !profileExists"
+  >
+
+    <div class="prompt-icon">
+      <span class="material-symbols-outlined">
+        person_add
+      </span>
+    </div>
+
+    <h3>
+      Complete Your Donor Profile
+    </h3>
+
+    <p>
+      You haven't set up your donor profile yet.
+      Please provide your blood type, Rh factor, and availability
+      so we can match you with blood requests.
+    </p>
+
+    <button
+      class="btn btn-primary"
+      (click)="goToProfile()"
+    >
+      <span class="material-symbols-outlined">
+        edit
+      </span>
+
+      Complete Profile Now
+    </button>
+
+  </div>
+
+
+  <!-- Dashboard Cards -->
+
+  <section
+    class="grid"
+    *ngIf="!loading && !errorMessage && profileExists"
+  >
+
+    <!-- Blood Type -->
+
+    <article class="card highlight">
+
+      <div class="card-icon">
+
+        <span class="material-symbols-outlined">
+          bloodtype
+        </span>
+
+      </div>
+
+      <span>
+        Blood Type
+      </span>
+
+      <strong>
+        {{ bloodType }}{{ rh === 'Positive' ? '+' : rh === 'Negative' ? '-' : '' }}
+      </strong>
+
+      <p>
+        Your registered blood type and Rh.
+      </p>
+
+    </article>
+
+
+    <!-- Last Donation -->
+
+    <article class="card">
+
+      <div class="card-icon blue">
+
+        <span class="material-symbols-outlined">
+          event
+        </span>
+
+      </div>
+
+      <span>
+        Last Donation
+      </span>
+
+      <strong>
+        {{ lastDonationDate }}
+      </strong>
+
+      <p>
+        Your last recorded donation date.
+      </p>
+
+    </article>
+
+
+    <!-- Eligibility -->
+
+    <article class="card">
+
+      <div class="card-icon teal">
+
+        <span class="material-symbols-outlined">
+          check_circle
+        </span>
+
+      </div>
+
+      <span>
+        Eligibility
+      </span>
+
+      <strong>
+        {{ eligibilityStatus }}
+      </strong>
+
+      <p>
+        Eligibility calculated by the backend.
+      </p>
+
+    </article>
+
+
+    <!-- Availability -->
+
+    <article class="card">
+
+      <div class="card-icon amber">
+
+        <span class="material-symbols-outlined">
+          toggle_on
+        </span>
+
+      </div>
+
+      <span>
+        Availability
+      </span>
+
+      <strong>
+        {{ availabilityStatus }}
+      </strong>
+
+      <p>
+        Your current donor availability status.
+      </p>
+
+    </article>
+
+  </section>
+
+
+  <!-- Emergency Alerts -->
+
+  <section
+    class="alert"
+    *ngIf="!loading"
+  >
+
+    <span class="material-symbols-outlined">
+      notifications_active
+    </span>
+
+    <div>
+
+      <strong>
+        Emergency alerts
+      </strong>
+
+      <p>
+        Compatible donors can receive real-time
+        emergency blood request notifications.
+      </p>
+
+    </div>
+
+    <a
+      routerLink="/donor/notifications"
+    >
+      View alerts
+    </a>
+
+  </section>
+
+</app-dashboard-layout>

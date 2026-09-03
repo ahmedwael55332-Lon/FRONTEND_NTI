@@ -1,0 +1,270 @@
+<app-dashboard-layout
+  title="Donor Portal"
+  subtitle="Emergency Alerts"
+  [navItems]="navItems"
+>
+
+  <!-- Page Header -->
+  <div class="page-head">
+
+    <div>
+      <span class="eyebrow">REAL-TIME ALERTS</span>
+
+      <h2>Emergency Notifications</h2>
+
+      <p>
+        Emergency blood requests delivered through real-time notifications.
+      </p>
+    </div>
+
+    <div class="header-actions">
+
+      <!-- Socket Connection Status -->
+      <span
+        class="connection-status"
+        [ngClass]="{
+          connected: connected,
+          disconnected: !connected
+        }"
+      >
+        <span class="status-dot"></span>
+
+        {{ connected ? 'Connected' : 'Disconnected' }}
+      </span>
+
+      <!-- Enable Browser Notifications -->
+      <button
+        type="button"
+        class="btn secondary"
+        *ngIf="browserNotificationsSupported && !browserNotificationsEnabled"
+        (click)="enableBrowserNotifications()"
+      >
+        <span class="material-symbols-outlined">
+          notifications_active
+        </span>
+
+        Enable Alerts
+      </button>
+
+      <!-- Clear All -->
+      <button
+        type="button"
+        class="btn secondary"
+        *ngIf="notifications.length > 0"
+        (click)="clearNotifications()"
+      >
+        <span class="material-symbols-outlined">
+          delete_sweep
+        </span>
+
+        Clear All
+      </button>
+
+    </div>
+
+  </div>
+
+
+  <!-- Socket Error -->
+  <div
+    class="alert error"
+    *ngIf="socketError"
+  >
+    <span class="material-symbols-outlined">
+      error
+    </span>
+
+    {{ socketError }}
+  </div>
+
+
+  <!-- Information Notice -->
+  <div class="card notice-card">
+
+    <div class="notice-icon">
+
+      <span class="material-symbols-outlined">
+        notifications_active
+      </span>
+
+    </div>
+
+    <div>
+
+      <strong>
+        Real-Time Emergency Alerts
+      </strong>
+
+      <p>
+        Emergency blood requests will appear here automatically
+        when the backend sends a new notification.
+      </p>
+
+    </div>
+
+  </div>
+
+
+  <!-- Notifications Section -->
+  <div class="notifications-container">
+
+
+    <!-- Notifications Header -->
+    <div
+      class="notifications-header"
+      *ngIf="notifications.length > 0"
+    >
+
+      <div>
+
+        <span class="eyebrow">
+          EMERGENCY REQUESTS
+        </span>
+
+        <h3>
+          {{ notifications.length }}
+          {{ notifications.length === 1 ? 'Alert' : 'Alerts' }}
+        </h3>
+
+      </div>
+
+    </div>
+
+
+    <!-- Notification Cards -->
+    <div
+      class="notification-card"
+      *ngFor="let notification of notifications"
+    >
+
+      <!-- Emergency Icon -->
+      <div class="notification-icon">
+
+        <span class="material-symbols-outlined">
+          bloodtype
+        </span>
+
+      </div>
+
+
+      <!-- Notification Content -->
+      <div class="notification-content">
+
+        <!-- Top -->
+        <div class="notification-top">
+
+          <div>
+
+            <span class="emergency-badge">
+              EMERGENCY
+            </span>
+
+            <h3>
+              Emergency Blood Request
+            </h3>
+
+          </div>
+
+          <span class="notification-date">
+            {{ formatDate(notification.createdAt) }}
+          </span>
+
+        </div>
+
+
+        <!-- Backend Message -->
+        <p class="notification-message">
+          {{ notification.message }}
+        </p>
+
+
+        <!-- Blood Information -->
+        <div class="blood-info">
+
+
+          <!-- Blood Type -->
+          <div class="info-item">
+
+            <span class="info-label">
+              Blood Type
+            </span>
+
+            <strong>
+              {{ notification.bloodType }}
+            </strong>
+
+          </div>
+
+
+          <!-- Rh -->
+          <div class="info-item">
+
+            <span class="info-label">
+              Rh
+            </span>
+
+            <strong>
+              {{ notification.rh }}
+            </strong>
+
+          </div>
+
+
+          <!-- Urgency -->
+          <div class="info-item">
+
+            <span class="info-label">
+              Urgency
+            </span>
+
+            <strong class="urgency">
+              {{ notification.urgency }}
+            </strong>
+
+          </div>
+
+
+          <!-- Request ID -->
+          <div class="info-item">
+
+            <span class="info-label">
+              Request ID
+            </span>
+
+            <strong class="request-id">
+              {{ notification.requestId }}
+            </strong>
+
+          </div>
+
+        </div>
+
+      </div>
+
+    </div>
+
+
+    <!-- Empty State -->
+    <div
+      class="card empty-card"
+      *ngIf="notifications.length === 0"
+    >
+
+      <span class="material-symbols-outlined">
+        notifications_none
+      </span>
+
+      <strong>
+        No emergency alerts received
+      </strong>
+
+      <p>
+        You will receive a notification here when
+        a compatible emergency blood request is created.
+      </p>
+
+    </div>
+
+  </div>
+
+</app-dashboard-layout>
